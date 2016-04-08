@@ -1,0 +1,7 @@
+PONG in Python! 
+
+Currently the Human_Game  is ready to play. The left player uses "Q" and "A" to control their paddle, while the right player uses the up and down arrows. 
+
+The first person to 4 points wins!
+
+Stay tuned for the human vs fuzzy AI version...

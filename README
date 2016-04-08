@@ -1,3 +1,28 @@
 PONG in Python! 
 
-There will be a human vs human and a human vs fuzzy AI game. Stay tuned....
+######################
+
+INSTALLATION:
+
+To play this version of the game (I'm creating a standalone executable), you will need numpy, skfuzzy and pyglet.
+
+Create a folder where you want PONG to reside, and then clone my 
+repository into your folder with the following:
+
+    $ git clone https://github.com/SophiaMitchell/Python_PONG.git
+
+To play the game, navigate to /Human_Game and simply type 
+ 
+    $ python pong.py
+
+#####################
+
+CONTROLS:
+
+Currently only the Human_Game  is ready to play. The left player 
+uses "Q" and "A" to control their paddle, while the right player 
+uses the up and down arrows. 
+
+Now play! The first person to 4 points wins!
+
+Stay tuned for the human vs fuzzy AI version...
