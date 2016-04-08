@@ -1,0 +1,56 @@
+# Singles PONG Game
+
+import pyglet, random, math
+from game import resources, player, load, computer, ball, util, config
+
+# Make the main game window
+end_game = False
+main_batch = pyglet.graphics.Batch()
+game_window = pyglet.window.Window(1000,600, caption = "Singles PONG game")
+
+game_over_text = pyglet.text.Label(text ="Game Over!",x=550, y=-300, anchor_x = 'center', batch = main_batch)
+
+# Make labels for scorekeeping
+player_score = pyglet.text.Label(text="Player Score: "+str(config.pl_score), x = 10, y = 575, batch = main_batch)
+comp_score = pyglet.text.Label(text="Computer Score: "+str(config.comp_score), x = 835, y = 575, batch = main_batch)
+
+# Make the players and the ball
+player_paddle = player.Player(x=40, y = 300, batch = main_batch)
+comp_paddle = computer.Computer(x = 950, y = 300, batch = main_batch)
+ball = load.balls(main_batch)
+paddles = [player_paddle] + [comp_paddle]
+game_objects = paddles + ball
+
+for obj in game_objects:
+    for handler in obj.event_handlers:
+        game_window.push_handlers(handler)
+
+@game_window.event
+def on_draw():
+    game_window.clear()
+    main_batch.draw()
+
+def update(dt):
+    if not config.end_game:
+        if config.pl_score > 3 or config.comp_score > 3:
+            game_over()
+ 
+        if ball[0].collides_with(player_paddle):
+            ball[0].handle_hit(player_paddle)
+
+        if ball[0].collides_with(comp_paddle):
+            ball[0].handle_hit(comp_paddle)
+
+        for obj in game_objects:
+            obj.update(dt)
+
+        player_score.text = "Player Score: "+str(config.pl_score)
+        comp_score.text = "Computer Score: "+str(config.comp_score)
+
+def game_over():
+    game_over_text.y = 250
+    config.end_game = True
+    
+if __name__ == "__main__":
+    pyglet.clock.schedule_interval(update, 1/200.0)   
+    pyglet.app.run() 
