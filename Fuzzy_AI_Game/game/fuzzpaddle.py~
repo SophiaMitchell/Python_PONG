@@ -1,0 +1,42 @@
+import numpy as np
+import skfuzzy as fuzz
+
+def game_type(player, comp):
+    score_diff = float(player-comp)
+    ### Inputs ###
+    # Input Variable Domain
+    score = np.arange(-21, 21, 1)
+    
+    # Input membership functions
+    score_ahead = fuzz.gaussmf(score, -21, 8.823)
+    score_tied = fuzz.gaussmf(score, 0, 9.012)
+    score_behind = fuzz.gaussmf(score, 21, 8.823)
+
+    # Fuzzifying the current input
+    def score_category(sc)
+        score_cat_ahead = fuzz.interp_membership(score, score_ahead, sc)
+        score_cat_tied = fuzz.interp_membership(score, score_tied, sc)
+        score_cat_behind = fuzz.interp_membership(score, score_behind, sc)
+        return dict(ahead = score_cat_ahead, tied = score_cat_tied, behind = score_cat_behind)
+
+    ### Outputs ###
+    # Output Variable Domain
+    game = np.arange(0, 1, 1)
+
+    # Output membership functions
+    game_defensive = fuzz.gaussmf(game, 0, 0.162899)
+    game_offensive = fuzz.gauss2mf(game, 0.30291, 0.090976, 1.31, 0.416)
+
+    ### Rules ###
+    current_score = score_category(score_diff)
+
+    rule1 = current_score['ahead']
+    rule2 = current_score['tied']
+    rule3 = current_score['behind']
+
+    # Apply implication operator
+    return type
+
+def move_fuzzy(
+
+

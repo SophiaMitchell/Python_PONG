@@ -1,5 +1,5 @@
 import pyglet
-import util
+import util, config
 
 class PhysicalObject(pyglet.sprite.Sprite):
     """A sprite with physical properties such as velocity"""
@@ -24,7 +24,7 @@ class PhysicalObject(pyglet.sprite.Sprite):
         min_x = 0
         min_y = 0
         max_x = 1000 - self.image.width
-        max_y = 550 - self.image.height
+        max_y = config.upper_y_bound - self.image.height
 
         if self.is_ball:    
 

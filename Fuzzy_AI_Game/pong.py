@@ -1,4 +1,4 @@
-# Singles PONG Game
+# Singles PONG Game with fuzzy AI player
 
 import pyglet, random, math
 from game import resources, player, load, computer, ball, util, config
@@ -18,8 +18,7 @@ comp_score = pyglet.text.Label(text="Computer Score: "+str(config.comp_score), x
 player_paddle = player.Player(x=40, y = 300, batch = main_batch)
 comp_paddle = computer.Computer(x = 950, y = 300, batch = main_batch)
 ball = load.balls(main_batch)
-paddles = [player_paddle] + [comp_paddle]
-game_objects = paddles + ball
+game_objects = [player_paddle] + ball
 
 for obj in game_objects:
     for handler in obj.event_handlers:
@@ -42,7 +41,11 @@ def update(dt):
             ball[0].handle_hit(comp_paddle)
 
         for obj in game_objects:
-            obj.update(dt)
+            obj.update(dt)  
+       
+        # The computer updates separately since it needs the ball's 
+        # status input for situational awareness
+        comp_paddle.update(ball[0], dt)
 
         player_score.text = "Player Score: "+str(config.pl_score)
         comp_score.text = "Computer Score: "+str(config.comp_score)

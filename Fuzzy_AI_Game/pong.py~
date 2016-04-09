@@ -1,4 +1,4 @@
-# Singles PONG Game
+# Singles PONG Game with fuzzy AI player
 
 import pyglet, random, math
 from game import resources, player, load, computer, ball, util, config
