@@ -16,9 +16,9 @@ class Player(physicalobject.PhysicalObject):
     def update(self, dt):
         super(Player, self).update(dt)
       
-        if self.key_handler[key.UP]:
+        if self.key_handler[key.Q]:
             self.v_y += self.thrust * dt
-        elif self.key_handler[key.DOWN]:
+        elif self.key_handler[key.A]:
             self.v_y -= self.thrust * dt
         else:
             self.v_y = 0

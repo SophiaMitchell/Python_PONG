@@ -13,22 +13,6 @@ class Computer(physicalobject.PhysicalObject):
         # Center of the paddle in the y direction
         self.center = self.y + (self.image.height/2)
 
-    def update(self, ball_object, dt):
-        super(Computer, self).update(dt)
-
-        # Upadting where the center of the paddle is
-        self.center = self.y + (self.image.height/2)     
- 
-        # Tying the ball information into the computer for
-        # situational awareness. This may or may not work... we'll
-        # see?
-        self.the_ball = ball_object      
- 
-        # Computer is a lot like player, but instead of using the    
-        # key handler to control movement we're using a fuzzy system 
-        # from "fuzzpaddle".
-        self.v_y = (handle_movement(self, the_ball) * self.thrust) * dt
-
     def handle_movement(self, the_ball):
         """ Figures out where the ball will be, and then calls the 
         cascading set of fuzzy sysetms to determine where the paddle 
@@ -43,7 +27,23 @@ class Computer(physicalobject.PhysicalObject):
         # Now I have the situational awareness needed for the basic 
         # fuzzy controller (just hits the ball, no strategy). Using 
         # the fuzzy systems to determine v_y.                
-        game = fuzzpaddle.game_type(config.pl_score, config.comp_score)
-        move = fuzzpaddle.move_fuzzy(game, difference)
+        # game = fuzzpaddle.game_type(config.pl_score, config.comp_score)
+        move = fuzzpaddle.move_fuzzy(difference)
         return move
 
+
+    def update(self, ball_object, dt):
+        super(Computer, self).update(dt)
+
+        # Upadting where the center of the paddle is
+        self.center = self.y + (self.image.height/2)     
+ 
+        # Tying the ball information into the computer for
+        # situational awareness. This may or may not work... we'll
+        # see?
+        self.the_ball = ball_object      
+ 
+        # Computer is a lot like player, but instead of using the    
+        # key handler to control movement we're using a fuzzy system 
+        # from "fuzzpaddle".
+        self.v_y = (self.handle_movement(self.the_ball) * self.thrust) * dt
