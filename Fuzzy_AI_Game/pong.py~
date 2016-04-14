@@ -17,7 +17,7 @@ comp_score = pyglet.text.Label(text="Computer Score: "+str(config.comp_score), x
 # Make the players and the ball
 player_paddle = player.Player(x=40, y = 300, batch = main_batch)
 ball = load.balls(main_batch)
-comp_paddle = computer.Computer(x = 950, y = 300, batch = main_batch, ball)
+comp_paddle = computer.Computer(ball, x = 950, y = 300, batch = main_batch)
 game_objects = [player_paddle] + ball
 
 for obj in game_objects:

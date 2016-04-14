@@ -56,7 +56,7 @@ def move_fuzzy(distance_in):
 
     # Convert the distance from this game's 550 unit tall area to 
     # the 200 unit tall are this fuzzy system was made for in MATLAB
-    distance_in = float(distance_in/2.75)
+    distance_in = distance_in/2.75
 
     ### Inputs ###
     # Input variable domain
@@ -90,7 +90,7 @@ def move_fuzzy(distance_in):
     up_fast = fuzz.trapmf(move, [0.1, 0.2, 1.14, 1.38])
 
     ### Rules ###
-    this_move = dist_category(distance_in)
+    this_move = dist_category(float(d_in))
     
     rule1 = this_move['fbelow']
     rule2 = this_move['cbelow']
