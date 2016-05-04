@@ -7,10 +7,12 @@ INSTALLATION:
 You can play this in Python, or, if you are running Linux, by simply downloading zipped distribution file and running the included .exe
 
 -- Play in PYTHON --
-To play this version of the game, you will need numpy, skfuzzy and pyglet.
+To play this version of the game, you will need numpy, skfuzzy and 
+pyglet.
 
 Create a folder where you want PONG to reside, and then clone my 
-repository into your fsfnet_ops@slashdotmedia.comolder with the following:
+repository into your fsfnet_ops@slashdotmedia.comolder with the 
+following:
 
     $ git clone https://github.com/SophiaMitchell/Python_PONG.git
 
@@ -19,9 +21,11 @@ To play the game, navigate to /Human_Game and simply type
     $ python pong.py
 
 -- Play with .exe (Linux only!) -- 
-To play this version of the game, you don't need python or any additional toolkits. Simply plug & play! 
+To play this version of the game, you don't need python or any 
+additional toolkits. Simply plug & play! 
 
-Download the zipped file here: http://sophia-mitchell-ai.com/s/dist.zip 
+Download the zipped file here: http://sophia-mitchell-ai.com/s/
+dist.zip 
 
 Just unzip the file, and click the .exe to play!
 
