@@ -1,4 +1,4 @@
-# Singles PONG Game
+# Human vs Human PONG Game
 
 import pyglet, random, math
 from game import resources, player, load, computer, ball, util, config
@@ -6,13 +6,13 @@ from game import resources, player, load, computer, ball, util, config
 # Make the main game window
 end_game = False
 main_batch = pyglet.graphics.Batch()
-game_window = pyglet.window.Window(1000,600, caption = "Singles PONG game")
+game_window = pyglet.window.Window(1000,600, caption = "Human vs Human PONG game")
 
 game_over_text = pyglet.text.Label(text ="Game Over!",x=550, y=-300, anchor_x = 'center', batch = main_batch)
 
 # Make labels for scorekeeping
-player_score = pyglet.text.Label(text="Player Score: "+str(config.pl_score), x = 10, y = 575, batch = main_batch)
-comp_score = pyglet.text.Label(text="Computer Score: "+str(config.comp_score), x = 835, y = 575, batch = main_batch)
+player_score = pyglet.text.Label(text="Player 1 Score: "+str(config.pl_score), x = 10, y = 575, batch = main_batch)
+comp_score = pyglet.text.Label(text="Player 2 Score: "+str(config.comp_score), x = 835, y = 575, batch = main_batch)
 
 # Make the players and the ball
 player_paddle = player.Player(x=40, y = 300, batch = main_batch)
@@ -44,8 +44,8 @@ def update(dt):
         for obj in game_objects:
             obj.update(dt)
 
-        player_score.text = "Player Score: "+str(config.pl_score)
-        comp_score.text = "Computer Score: "+str(config.comp_score)
+        player_score.text = "Player 1 Score: "+str(config.pl_score)
+        comp_score.text = "Player 2 Score: "+str(config.comp_score)
 
 def game_over():
     game_over_text.y = 250

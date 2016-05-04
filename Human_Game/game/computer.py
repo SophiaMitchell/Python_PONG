@@ -15,9 +15,9 @@ class Computer(physicalobject.PhysicalObject):
     def update(self, dt):
         super(Computer, self).update(dt)
       
-        if self.key_handler[key.Q]:
+        if self.key_handler[key.UP]:
             self.v_y += self.thrust * dt
-        elif self.key_handler[key.A]:
+        elif self.key_handler[key.DOWN]:
             self.v_y -= self.thrust * dt
         else:
             self.v_y = 0
