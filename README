@@ -11,7 +11,7 @@ To play this version of the game, you will need numpy, skfuzzy and
 pyglet.
 
 Create a folder where you want PONG to reside, and then clone my 
-repository into your fsfnet_ops@slashdotmedia.comolder with the 
+repository into your folder with the 
 following:
 
     $ git clone https://github.com/SophiaMitchell/Python_PONG.git
