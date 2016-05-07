@@ -1,5 +1,5 @@
 import pyglet
-import physicalobject, resources
+import physicalobject, resources, config
 
 class Ball(physicalobject.PhysicalObject):
 
@@ -10,6 +10,7 @@ class Ball(physicalobject.PhysicalObject):
     
     def update(self, dt):
         super(Ball, self).update(dt)
+        config.ball = self
 
     def handle_hit(self, other_paddle):
         self.v_x = -self.v_x
