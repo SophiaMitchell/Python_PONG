@@ -1,5 +1,6 @@
 import numpy as np
 import skfuzzy as fuzz
+import matplotlib.pyplot as plt
 
 def game_type(player, comp):
     """ A fuzzy algorithm to define the offensiveness and/or 
@@ -9,7 +10,7 @@ def game_type(player, comp):
     score_diff = float(player-comp)
     ### Inputs ###
     # Input Variable Domain
-    score = np.arange(-21, 21, 1)
+    score = np.arange(-21, 21, .01)
     
     # Input membership functions
     score_ahead = fuzz.gaussmf(score, -21, 8.823)
@@ -25,11 +26,11 @@ def game_type(player, comp):
 
     ### Outputs ###
     # Output Variable Domain
-    game = np.arange(0, 1, 1)
+    game = np.arange(-1, 1, .001)
 
     # Output membership functions
-    game_defensive = fuzz.gaussmf(game, 0, 0.162899)
-    game_offensive = fuzz.gauss2mf(game, 0.30291, 0.090976, 1.31, 0.416)
+    game_defensive = fuzz.gauss2mf(game, -1.31, .416, 0.09, .162899)
+    game_offensive = fuzz.gauss2mf(game, .30291, .090976, 1.31, .416)
 
     ### Rules ###
     current_score = score_category(score_diff)
@@ -60,7 +61,7 @@ def move_fuzzy(distance_in):
 
     ### Inputs ###
     # Input variable domain
-    dist = np.arange(-100, 100, 1)
+    dist = np.arange(-200, 200, .01)
 
     # Input Membership Functions
     far_below = fuzz.gbellmf(dist, 79.68, 24.6, -90)
@@ -80,7 +81,7 @@ def move_fuzzy(distance_in):
 
     ### Outputs ###
     # Output Variable Domain
-    move = np.arange(-1, 1, 1)
+    move = np.arange(-1, 1, .001)
 
     # Output Membership Functions
     down_fast = fuzz.trapmf(move, [-1.45, -1.05, -0.2, -0.1])

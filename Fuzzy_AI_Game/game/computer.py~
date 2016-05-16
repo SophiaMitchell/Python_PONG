@@ -6,7 +6,10 @@ class Computer(physicalobject.PhysicalObject):
     
     def __init__(self, *args, **kwargs):
         super(Computer, self).__init__(img=resources.paddle, *args, **kwargs)
+
         self.thrust = 300.0
+        self.score = 0
+
         self.key_handler = key.KeyStateHandler()
         self.event_handlers = [self, self.key_handler]
         
@@ -17,19 +20,26 @@ class Computer(physicalobject.PhysicalObject):
         """ Figures out where the ball will be, and then calls the 
         cascading set of fuzzy sysetms to determine where the paddle 
         should go"""
-        
+                
         # Figure out where the ball will intercept the paddle's y-
         # axis and then determine how far away the center of the 
         # paddle is from that point.
-        yint = util.calc_intercept(config.ball, self)
-        difference = self.center - yint
-        
-        # Now I have the situational awareness needed for the basic 
-        # fuzzy controller (just hits the ball, no strategy). Using 
-        # the fuzzy systems to determine v_y.                
-        # game = fuzzpaddle.game_type(config.pl_score, config.comp_score)
-        move = fuzzpaddle.move_fuzzy(difference)
-        return move
+        # The ball only needs to be taken into consideration when 
+        # it's moving towards the paddle. Otherwise return to the
+        # center of the playing field.
+        if (config.ball.v_x > 0):
+            yint = util.calc_intercept(config.ball, self)
+            difference = yint - self.center
+            # Now I have the situational awareness needed for the  
+            # basic fuzzy controller (just hits the ball, no   
+            # strategy). Using the fuzzy systems to                  
+            # determine v_y. 
+            # game = fuzzpaddle.game_type(config.pl_score, config.comp_score)
+            self.move = fuzzpaddle.move_fuzzy(difference)
+        else:
+            self.move = 0
+
+        return self.move
 
 
     def update(self, ball_object, dt):
@@ -41,4 +51,8 @@ class Computer(physicalobject.PhysicalObject):
         # Computer is a lot like player, but instead of using the    
         # key handler to control movement we're using a fuzzy system 
         # from "fuzzpaddle".
-        self.v_y = self.handle_movement() * self.thrust * dt
+        letsgo = self.handle_movement()
+        if (letsgo != 0):
+            self.v_y += letsgo * self.thrust * dt
+        else:
+            self.v_y = 0

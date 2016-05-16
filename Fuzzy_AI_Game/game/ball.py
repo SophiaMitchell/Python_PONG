@@ -13,8 +13,7 @@ class Ball(physicalobject.PhysicalObject):
         config.ball = self
 
     def handle_hit(self, other_paddle):
-        self.v_x = -self.v_x
+        self.v_x = -self.v_x*1.1
         paddle_center = other_paddle.y + (other_paddle.image.height/2)
         ball_center = self.y + (self.image.height/2)
-        
         self.v_y = (ball_center - paddle_center) * 5
